@@ -48,15 +48,26 @@ function App() {
         <Route path="/check-out" element={<CheckOut />} />
         {/* <Route path="/loading" element={<Loader />} /> */}
         {/* <Route path="/loading-2" element={<Loader2 />} /> */}
-        <Route path="/investors-Cars" element={<InvestorsCars />} />
-        <Route path="/approved-cars" element={<CarsApproved />} />
-        <Route path="/cars-for-approval" element={<CarsForApproval />} />
-        <Route path="/confirm-booking" element={<ConfirmBooking />} />
+        <Route
+          path="/investors-Cars"
+          element={<Protected Cmp={InvestorsCars} />}
+        />
+        <Route
+          path="/approved-cars"
+          element={<Protected Cmp={CarsApproved} />}
+        />
+        <Route
+          path="/cars-for-approval"
+          element={<Protected Cmp={CarsForApproval} />}
+        />
+        <Route
+          path="/confirm-booking"
+          element={<Protected Cmp={ConfirmBooking} />}
+        />
         <Route
           path="/register-car-via-panel"
-          element={<RegisterYourCarPanel />}
+          element={<Protected Cmp={RegisterYourCarPanel} />}
         />
-        {/* <Route path="/investor-panel" element={<Protected Cmp={Investor} />} /> */}
 
         <Route path="/dashboard" element={<Protected Cmp={Dashboard} />} />
       </Routes>

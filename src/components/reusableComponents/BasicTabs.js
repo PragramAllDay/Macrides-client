@@ -58,6 +58,7 @@ export default function FullWidthTabs({ handleClose }) {
     identifier: "",
     password: "",
   });
+  console.log(BASE_URL);
   const [investorData, setInvestorData] = React.useState({
     role: "Investor",
     identifier: "",
