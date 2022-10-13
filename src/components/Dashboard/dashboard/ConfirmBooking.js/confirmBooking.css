@@ -1,0 +1,28 @@
+/* flex gap-10 justify-center */
+
+.Carscontainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: large;
+}
+
+@media screen and (max-width: 700px) {
+  .Carscontainer {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+@media screen and (max-width: 400px) {
+  .Carscontainer {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    flex-wrap: wrap;
+    font-size: medium;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,13 @@
+/* style={{
+ borderLeft: "2px solid #D9EB3D",
+ height: "80vh",
+                }} */
+.verticalLine {
+  border-left: 2px solid #d9eb3d;
+  height: 80vh;
+}
+@media screen and (max-width: 1144px) {
+  .verticalLine {
+    display: none;
+  }
+}
