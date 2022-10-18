@@ -40,7 +40,7 @@ const SearchACar = () => {
   const id = data.data ? data.data : [];
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-[100vh]">
       <Header />
       <div className="pt-40 ">
         <NavBar />
@@ -65,7 +65,7 @@ const SearchACar = () => {
               >
                 <div className="displayContainer">
                   <img
-                    src={`${BASE_URL}${car.attributes.exteriorCarImage.data.attributes.url}`}
+                    src={`${car.attributes.exteriorCarImage.data.attributes.url}`}
                     // src="http://localhost:1337/uploads/admin_505e43c0fd.png"
                     alt=""
                     className="h-40 w-[50vh] md:h-50 md:w-[60vh] lg:h-60 lg:w-[70vh] "
@@ -127,7 +127,7 @@ const SearchACar = () => {
                             fontWeight: "bold",
                             alignSelf: "center",
                             fontSize: "20px",
-                            mt: "80%",
+                            mt: "50%",
                             color: "black",
                             backgroundColor: "#D9EB3D",
                             "&:hover": {

@@ -27,7 +27,11 @@ import { Radio } from "@mui/material";
 import "./checkout.css";
 import { useNavigate } from "react-router-dom";
 import { setDropOff } from "../../reducers/Dropoff";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
+import { style } from "@mui/system";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -68,10 +72,11 @@ export default function RegisterYourCar({ handleClose }) {
   const theme = useTheme();
   const dispatch = useDispatch();
   const [dropOffDate, setDropOffDate] = React.useState(
-    new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
+    new Date(new Date().getTime())
   );
   const [dropOffTime, setDropOffTime] = React.useState(new Date());
   const dropoff = useSelector((state) => state.dropoff.value);
+  console.log(dropoff);
   const bookedCar = useSelector((state) => state?.bookedCar);
   const BASE_URL = process.env.REACT_APP_API_REQUEST_URL;
   const navigate = useNavigate();
@@ -108,6 +113,62 @@ export default function RegisterYourCar({ handleClose }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const [snack, setSnack] = React.useState(false);
+  const [snack1, setSnack1] = React.useState(false);
+  const [snack2, setSnack2] = React.useState(false);
+
+  const handleSnackClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnack(false);
+  };
+  const handleSnackClose1 = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnack1(false);
+  };
+  const handleSnackClose2 = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+
+    setSnack2(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleSnackClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleSnackClose}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
+  const action2 = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleSnackClose1}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleSnackClose1}
+      >
+        <CloseIcon fontSize="small" />
+      </IconButton>
+    </React.Fragment>
+  );
 
   const handleTimeFrom = (time) => {
     setTextFieldValue({ ...TextFieldValue, time: time });
@@ -134,16 +195,37 @@ export default function RegisterYourCar({ handleClose }) {
   // console.log(TextFieldValue);
 
   const handleClick = (event) => {
-    setValue(1);
-    let { name, value } = event.target;
-    setTextFieldValue({ ...TextFieldValue, [name]: value });
-    dispatch(setRentalServiceType({ TextFieldValue }));
+    if (
+      !dateFrom ||
+      !time ||
+      !TextFieldValue.Pick_Up_Location ||
+      !TextFieldValue.user_name ||
+      !TextFieldValue.user_email ||
+      !TextFieldValue.user_phoneno
+    ) {
+      setSnack(true);
+    } else {
+      setValue(1);
+      let { name, value } = event.target;
+      setTextFieldValue({ ...TextFieldValue, [name]: value });
+      console.log(TextFieldValue);
+      dispatch(setRentalServiceType({ TextFieldValue }));
+    }
   };
   const handleClick2 = (event) => {
-    setValue(2);
-    let { name, value } = event.target;
-    setTextFieldValue({ ...TextFieldValue, [name]: value });
-    dispatch(setRentalServiceType({ TextFieldValue }));
+    if (
+      !dropoff.DropOfftime ||
+      !dropoff.Dropoff ||
+      !TextFieldValue.Drop_Off_Location
+    ) {
+      alert("Please fill all the fields");
+      console.log("dropOffDate", dropOffDate);
+    } else {
+      setValue(2);
+      let { name, value } = event.target;
+      setTextFieldValue({ ...TextFieldValue, [name]: value });
+      dispatch(setRentalServiceType({ TextFieldValue }));
+    }
   };
   const handleClickBack2 = (event) => {
     setValue(0);
@@ -324,10 +406,17 @@ export default function RegisterYourCar({ handleClose }) {
               >
                 Next
               </Button>
+              <Snackbar
+                open={snack}
+                autoHideDuration={6000}
+                onClose={handleSnackClose}
+                message="Please fill all fields"
+                action={action}
+              />
             </div>
           </TabPanel>
           <TabPanel value={1} index={1} dir={theme.direction}>
-            <div className="flex flex-col items-center pt-10 gap-8">
+            <div className="flex flex-col items-center pt-40 gap-8">
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-2">
                   <label>Enter Drop-Off Date:</label>
@@ -360,7 +449,7 @@ export default function RegisterYourCar({ handleClose }) {
                   onChange={handleChangeFields}
                 />
               </div>
-              <div className="flex flex-wrap gap-[20px]">
+              <div className="flex flex-wrap gap-[20px] justify-center">
                 <Button
                   color="inherit"
                   size="large"
@@ -400,6 +489,13 @@ export default function RegisterYourCar({ handleClose }) {
                 >
                   Next
                 </Button>
+                <Snackbar
+                  open={snack1}
+                  autoHideDuration={6000}
+                  onClose={handleSnackClose1}
+                  message="Please fill all fields"
+                  action={action2}
+                />
               </div>
             </div>
           </TabPanel>
@@ -455,7 +551,7 @@ export default function RegisterYourCar({ handleClose }) {
                   </div>
                   <div className="flex gap-20 flex-wrap">
                     <img
-                      src={`${BASE_URL}${bookedCar.value?.attributes?.exteriorCarImage?.data?.attributes?.url}`}
+                      src={`${bookedCar.value?.attributes?.exteriorCarImage?.data?.attributes?.url}`}
                       alt=""
                       style={{ width: "300px", height: "200px" }}
                     />
@@ -489,7 +585,7 @@ export default function RegisterYourCar({ handleClose }) {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-wrap gap-[20px]">
+              <div className="flex flex-wrap gap-[20px] justify-center">
                 <Button
                   color="inherit"
                   size="large"
@@ -533,7 +629,7 @@ export default function RegisterYourCar({ handleClose }) {
           </TabPanel>
           <TabPanel value={3} index={3} dir={theme.direction}>
             <div className="flex flex-col items-center">
-              <div className="flex justify-center mt-[10%] w-[200px] md:w-[400px] lg:w-[600px] xl:w-[700px]">
+              <div className="flex justify-center mt-[14%]  w-[200px] md:w-[400px] lg:w-[600px] xl:w-[700px]">
                 <h1>
                   <Checkbox
                     {...label}
@@ -549,7 +645,7 @@ export default function RegisterYourCar({ handleClose }) {
                   Overtime charges and terms of use.”
                 </h1>
               </div>
-              <div className="flex flex-wrap gap-[20px]">
+              <div className="flex flex-wrap gap-[20px] justify-center">
                 <Button
                   color="inherit"
                   size="large"
@@ -593,7 +689,13 @@ export default function RegisterYourCar({ handleClose }) {
           </TabPanel>
         </SwipeableViews>
       </Box>
-      <div className="pt-10">
+      <div
+        className={
+          value === 3
+            ? "mt-[-76%] sm:mt-[-30%] md:mt-[-22%] lg:mt-[-18%] xl:mt-[-11%] "
+            : "mt- 1"
+        }
+      >
         <Footer />
       </div>
     </div>

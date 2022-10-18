@@ -18,6 +18,7 @@ import userReducer9 from "./reducers/ResponseApproveCars";
 import userReducer10 from "./reducers/Checkout";
 import userReducer11 from "./reducers/Dropoff";
 import userReducer12 from "./reducers/ConfirmBooking";
+import userReducer13 from "./reducers/Enquiries";
 
 const store = configureStore({
   reducer: {
@@ -33,6 +34,7 @@ const store = configureStore({
     bookedCar: userReducer10,
     dropoff: userReducer11,
     confirmBooking: userReducer12,
+    enquiries: userReducer13,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

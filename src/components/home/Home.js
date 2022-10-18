@@ -81,7 +81,7 @@ const Home = () => {
       </div>
       <div className="text-container">
         <h1
-          className=" font-bold text-[25px] md:text-[23px] lg:text-[30px] xl:text-[40px]  mx-auto"
+          className=" font-bold text-[25px] md:text-[23px] lg:text-[30px] xl:text-[40px]  mx-auto mt-10"
           style={{ color: "212529" }}
         >
           Why Choose Us?

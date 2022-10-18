@@ -95,7 +95,7 @@ const CarsApproved = () => {
               >
                 <div className="Carscontained">
                   <img
-                    src={`${BASE_URL}${car.attributes.exteriorCarImage.data.attributes.url}`}
+                    src={`${car.attributes.exteriorCarImage.data.attributes.url}`}
                     // src="http://localhost:1337/uploads/admin_505e43c0fd.png"
                     alt=""
                     className="h-40 w-[50vh] md:h-50 md:w-[60vh] lg:h-60 lg:w-[70vh] "

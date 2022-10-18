@@ -27,6 +27,7 @@ import InvestorsCars from "./components/Dashboard/InvestorsCars/InvestorCars";
 import CarsForApproval from "./components/Dashboard/dashboard/ApproveCars/ApproveCars";
 import CarsApproved from "./components/Dashboard/dashboard/ApprovedCars/ApprovedCars";
 import ConfirmBooking from "./components/Dashboard/dashboard/ConfirmBooking.js/ConfirmBooking";
+import Enquiries from "./components/Dashboard/dashboard/Enquiries/Enquiries";
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
         />
 
         <Route path="/dashboard" element={<Protected Cmp={Dashboard} />} />
+        <Route path="/enquiries" element={<Protected Cmp={Enquiries} />} />
       </Routes>
     </BrowserRouter>
   );

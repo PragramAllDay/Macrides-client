@@ -389,11 +389,10 @@ export default function RegisterYourCar({ handleClose }) {
               <div>
                 <Button
                   color="inherit"
-                  size="large"
                   variant="text"
                   onClick={handleChange}
                   sx={{
-                    fontSize: "25px",
+                    fontSize: "20px",
                     fontWeight: "bold",
 
                     mt: "5%",
@@ -403,6 +402,7 @@ export default function RegisterYourCar({ handleClose }) {
                     // minWidth: "200px",
                     "&:hover": { backgroundColor: "black", color: "#D9EB3D" },
                   }}
+                  className="text-[12px] md:text-[18px] lg:text-[20px] xl:text-[25px] font-bold"
                 >
                   Register Without Driver
                 </Button>
@@ -667,7 +667,7 @@ export default function RegisterYourCar({ handleClose }) {
                       dispatch(setDriver(true));
                     }}
                     sx={{
-                      fontSize: "25px",
+                      fontSize: "20px",
                       fontWeight: "bold",
 
                       mt: "5%",

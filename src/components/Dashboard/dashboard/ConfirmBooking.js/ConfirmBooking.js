@@ -165,13 +165,13 @@ const ConfirmBooking = () => {
                           fontWeight: "bold",
                           alignSelf: "center",
                           fontSize: "15px",
-                          mt: "80%",
-                          color: "black",
+                          mt: "20%",
+                          color: "white",
                           maxWidth: "200px",
-                          backgroundColor: "#D9EB3D",
+                          backgroundColor: "#060B26",
                           "&:hover": {
-                            backgroundColor: "black",
-                            color: "#D9EB3D",
+                            backgroundColor: "gray",
+                            color: "#060B26",
                           },
                         }}
                       >
@@ -180,7 +180,7 @@ const ConfirmBooking = () => {
                     </div>
                   </div>
                 </div>
-                <hr className="w-[100%] h-[20px]" />
+                <hr className="w-[100%] h-[20px] mt-5" />
               </div>
             );
           })}
